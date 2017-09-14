@@ -1,0 +1,17 @@
+{
+  "name": "launching-swiftly",
+  "version": "1.0.0",
+  "description": "Configurable dashboard/launcher",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron"
+  ],
+  "author": "Swift",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.7.5"
+  }
+}
