@@ -4,7 +4,8 @@
   "description": "Configurable dashboard/launcher",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "test": "mocha"
   },
   "keywords": [
     "Electron"
@@ -12,6 +13,11 @@
   "author": "Swift",
   "license": "MIT",
   "devDependencies": {
-    "electron": "~1.7.5"
+    "electron": "~1.7.5",
+    "mocha": "^3.5.3",
+    "unexpected": "^10.35.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
   }
 }
