@@ -58,10 +58,7 @@ describe('The config reader', () => {
   })
 
   it('errors when not given valid JSON', () => {
-    function callingConfigReaderWithInvalidInput() {
-      readConfig('}')
-    }
-
-    expect(callingConfigReaderWithInvalidInput, 'to error', 'Unexpected token }')
+    function callingConfigReaderWithInvalidInput() { readConfig('}') }
+    expect(callingConfigReaderWithInvalidInput, 'to error', /unexpected token/i)
   })
 })
