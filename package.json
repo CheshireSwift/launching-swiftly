@@ -15,6 +15,7 @@
   "devDependencies": {
     "electron": "~1.7.5",
     "mocha": "^3.5.3",
+    "standard": "^10.0.3",
     "unexpected": "^10.35.0"
   },
   "dependencies": {

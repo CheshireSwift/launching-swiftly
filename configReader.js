@@ -1,7 +1,7 @@
 'use strict'
 let _ = require('lodash')
 
-function read(json) {
+function read (json) {
   let config = JSON.parse(json)
   let modules = config.modules
   let templateAreas = _.reduce(
@@ -28,7 +28,7 @@ function read(json) {
     unusedModuleWarnings,
     undefinedModuleWarnings
   ])
-  
+
   return {
     modules,
     templateAreas,
