@@ -16,9 +16,10 @@ const STYLE = {
 
 export default class GridContainer extends React.Component {
   render () {
-    let styles = _.merge(STYLE, {
-      gridTemplateAreas: this.props.templateAreas
-    })
+    let styles = _.merge({},
+      STYLE,
+      { gridTemplateAreas: this.props.templateAreas }
+    )
 
     let blocks = _.map(this.props.modules, (moduleConfig, moduleName) =>
       <GridElement key={moduleName} area={moduleName} blockColor={moduleConfig.color} />

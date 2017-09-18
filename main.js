@@ -1,7 +1,8 @@
 import {app, BrowserWindow, globalShortcut} from 'electron'
-
 import path from 'path'
 import url from 'url'
+
+import configReader from './configReader'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -24,7 +25,24 @@ function createWindow () {
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
 
-  mainWindow.on('ready-to-show', mainWindow.show)
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.webContents.send('config-changed', configReader.read(JSON.stringify({
+      modules: {
+        one: { color: 'red' },
+        two: { color: 'orange' },
+        thr: { color: 'yellow' },
+        fou: { color: 'green' },
+        fiv: { color: 'blue' },
+        six: { color: 'violet' }
+      },
+      layout: [
+        ['one', 'one', 'two', 'two'],
+        ['one', 'one', 'fou', 'thr'],
+        ['six', 'six', 'fou', 'fiv']
+      ]
+    })))
+    mainWindow.show()
+  })
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

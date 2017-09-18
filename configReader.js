@@ -11,6 +11,7 @@ function read (json) {
   let unusedModules = _.difference(_.keys(config.modules), _.flatten(config.layout))
   let unusedModuleWarnings = _.map(unusedModules, moduleName => `Module "${moduleName}" is defined but not used.`)
 
+  // TODO: dedup layout entries
   let undefinedModules = _.difference(_.flatten(config.layout), _.keys(config.modules))
   let undefinedModuleWarnings = _.map(undefinedModules, moduleName => `Module "${moduleName}" is not defined.`)
 
