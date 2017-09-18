@@ -1,4 +1,6 @@
 'use strict'
+
+/* global describe it */
 let expect = require('unexpected')
 
 describe('The config reader', () => {

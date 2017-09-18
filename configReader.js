@@ -4,19 +4,9 @@ let _ = require('lodash')
 function read (json) {
   let config = JSON.parse(json)
   let modules = config.modules
-  let templateAreas = _.reduce(
-      config.layout,
-      (template, row) => `${template}"${row.join(' ')}"`,
-      ''
-    )
-    //templateAreas: _(config.layout)
-    //  .map(row => '"' + row.join(' ') + '"')
-    //  .join('')
-    //templateAreas: _.reduce(
-    //  config.layout,
-    //  (template, row) => template + '"' + row.join(' ') + '"',
-    //  ''
-    //)
+  let templateAreas = _(config.layout)
+    .map(row => `"${row.join(' ')}"`)
+    .join('')
 
   let unusedModules = _.difference(_.keys(config.modules), _.flatten(config.layout))
   let unusedModuleWarnings = _.map(unusedModules, moduleName => `Module "${moduleName}" is defined but not used.`)

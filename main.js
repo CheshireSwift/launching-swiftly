@@ -1,7 +1,7 @@
-let {app, BrowserWindow, globalShortcut} = require('electron')
+import {app, BrowserWindow, globalShortcut} from 'electron'
 
-let path = require('path')
-let url = require('url')
+import path from 'path'
+import url from 'url'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -11,10 +11,7 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     frame: false,
-    show: false,
-    //webPreferences: {
-      //experimentalFeatures: true
-    //}
+    show: false
   })
 
   // and load the index.html of the app.
@@ -25,7 +22,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   mainWindow.on('ready-to-show', mainWindow.show)
 

@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>Launching, Swiftly</title>
-    <script src="https://unpkg.com/vue"></script>
+    <script>
+      require('babel-register')
+      require('./scripts/main')
+    </script>
     <style>
       :root {
         --charcoal:             #272822;
@@ -14,74 +17,22 @@
         --gold-clover:          #E6DB74;
         --spring-lilac:         #AE81FF;
 
-        --background-color: var(--charcoal);
-        --red: var(--red-orchid);
-        --orange: var(--pumpkin-spice);
-        --yellow: var(--gold-clover);
-        --green: var(--hennink);
-        --blue: var(--bounded-rationality);
-        --violet: var(--spring-lilac);
+        --scheme-background-color:  var(--charcoal);
+        --scheme-red:               var(--red-orchid);
+        --scheme-orange:            var(--pumpkin-spice);
+        --scheme-yellow:            var(--gold-clover);
+        --scheme-green:             var(--hennink);
+        --scheme-blue:              var(--bounded-rationality);
+        --scheme-violet:            var(--spring-lilac);
       }
       html>body {
         margin: 5px;
         padding: 5px;
-        background: var(--background-color);
-      }
-
-      .grid-container {
-        display: grid;
-        grid-template-areas:
-          "one one two two"
-          "one one fou thr"
-          "six six fou fiv";
-        grid-column-gap: 5px;
-        grid-row-gap: 5px;
-        height: calc(100vh - 20px);
-        width: 100%;
-      }
-      .grid-element {
-      }
-
-      .item-1 {
-        background: var(--red);
-        grid-area: one;
-      }
-      .item-2 {
-        background: var(--orange);
-        grid-area: two;
-      }
-      .item-3 {
-        background: var(--yellow);
-        grid-area: thr;
-      }
-      .item-4 {
-        background: var(--green);
-        grid-area: fou;
-      }
-      .item-5 {
-        background: var(--blue);
-        grid-area: fiv;
-      }
-      .item-6 {
-        background: var(--violet);
-        grid-area: six;
+        background: var(--scheme-background-color);
       }
     </style>
   </head>
   <body>
-    <div class="grid-container">
-      <div class="grid-element item-1"></div>
-      <div class="grid-element item-2"></div>
-      <div class="grid-element item-3"></div>
-      <div class="grid-element item-4"></div>
-      <div class="grid-element item-5"></div>
-      <div class="grid-element item-6"></div>
-    </div>
     <div id="app"></div>
   </body>
-
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
 </html>
