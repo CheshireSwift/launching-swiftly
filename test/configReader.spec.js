@@ -1,37 +1,38 @@
 'use strict'
 
 /* global describe it */
-let expect = require('unexpected')
+const expect = require('unexpected')
 
 describe('The config reader', () => {
-  let readConfig = require('../configReader.js').read
+  const configReader = require('../configReader.js')
+  const readConfig = configReader.read
 
   it('loads the modules into a dictionary', () => {
-    let configJSON = `{
+    const config = {
       "modules": {
         "web": {},
         "terminal": {},
         "launcher": {}
       }
-    }`
+    }
 
-    expect(readConfig(configJSON).modules, 'to have keys', 'web', 'terminal', 'launcher')
+    expect(readConfig(config).modules, 'to have keys', 'web', 'terminal', 'launcher')
   })
 
   it('converts layout arrays to CSS values', () => {
-    let configJSON = `{
+    const config = {
       "layout": [
         ["a", "b", "c"],
         ["a", "d", "d"]
       ]
-    }`
+    }
 
-    expect(readConfig(configJSON).templateAreas, 'to be', '"a b c"' +
-                                                          '"a d d"')
+    expect(readConfig(config).templateAreas, 'to be', '"a b c"' +
+                                                      '"a d d"')
   })
 
   it('warns if there are modules not used in the layout', () => {
-    let configJSON = `{
+    const config = {
       "modules": {
         "a": {},
         "b": {},
@@ -40,27 +41,27 @@ describe('The config reader', () => {
       "layout": [
         ["a"]
       ]
-    }`
+    }
 
-    expect(readConfig(configJSON).warnings, 'to contain', 'Module "b" is defined but not used.')
-    expect(readConfig(configJSON).warnings, 'to contain', 'Module "c" is defined but not used.')
+    expect(readConfig(config).warnings, 'to contain', 'Module "b" is defined but not used.')
+    expect(readConfig(config).warnings, 'to contain', 'Module "c" is defined but not used.')
   })
 
   it('warns if there are undefined modules in the layout', () => {
-    let configJSON = `{
+    const config = {
       "modules": {
         "a": {}
       },
       "layout": [
         ["a", "b", "c"]
       ]
-    }`
-    expect(readConfig(configJSON).warnings, 'to contain', 'Module "b" is not defined.')
-    expect(readConfig(configJSON).warnings, 'to contain', 'Module "c" is not defined.')
+    }
+    expect(readConfig(config).warnings, 'to contain', 'Module "b" is not defined.')
+    expect(readConfig(config).warnings, 'to contain', 'Module "c" is not defined.')
   })
 
-  it('errors when not given valid JSON', () => {
-    function callingConfigReaderWithInvalidInput () { readConfig('}') }
+  it('errors when not given valid ', () => {
+    function callingConfigReaderWithInvalidInput () { configReader.readJSON('}') }
     expect(callingConfigReaderWithInvalidInput, 'to error', /unexpected token/i)
   })
 })

@@ -1,8 +1,10 @@
 'use strict'
 let _ = require('lodash')
 
-function read (json) {
-  let config = JSON.parse(json)
+function readJSON(json) {
+  read(JSON.parse(json))
+}
+function read(config) {
   let modules = config.modules
   let templateAreas = _(config.layout)
     .map(row => `"${row.join(' ')}"`)
@@ -28,5 +30,5 @@ function read (json) {
 }
 
 module.exports = {
-  read
+  read, readJSON
 }
