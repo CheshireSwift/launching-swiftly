@@ -1,6 +1,6 @@
 'use babel'
 
-import {ipcRenderer} from 'electron'
+import { ipcRenderer } from 'electron'
 import React from 'react'
 import _ from 'lodash'
 
@@ -19,6 +19,7 @@ export default class Main extends React.Component {
 
   componentDidMount () {
     ipcRenderer.on('config-changed', this.configChanged.bind(this))
+    ipcRenderer.send('mounted')
   }
 
   componentWillUnmount () {
@@ -29,7 +30,7 @@ export default class Main extends React.Component {
     if (_.size(config.warnings)) {
       window.alert(config.warnings.join('\n'))
     }
-    this.setState({config})
+    this.setState({ config })
   }
 
   render () {

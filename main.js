@@ -1,4 +1,4 @@
-import {app, BrowserWindow, globalShortcut} from 'electron'
+import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron'
 import path from 'path'
 import url from 'url'
 
@@ -8,7 +8,7 @@ import configReader from './configReader'
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     frame: false,
@@ -25,8 +25,8 @@ function createWindow () {
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
 
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.webContents.send('config-changed', configReader.read(JSON.stringify({
+  ipcMain.on('mounted', () => {
+    mainWindow.webContents.send('config-changed', configReader.read({
       modules: {
         one: { color: 'red' },
         two: { color: 'orange' },
@@ -40,7 +40,10 @@ function createWindow () {
         ['one', 'one', 'fou', 'thr'],
         ['six', 'six', 'fou', 'fiv']
       ]
-    })))
+    }))
+  })
+
+  mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
 

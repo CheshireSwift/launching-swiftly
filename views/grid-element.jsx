@@ -1,20 +1,18 @@
 'use babel'
 
-import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import styled from 'styled-components'
 
-export default class GridElement extends React.Component {
-  render () {
-    let styles = _.merge({},
-        { 'gridArea': this.props.area },
-        this.props.blockColor && { 'background': `var(--scheme-${this.props.blockColor})` }
-    )
-    return <div style={styles} />
-  }
-}
+const GridElement = styled.div`
+  grid-area: ${props => props.area};
+  ${props => props.blockColor && `
+    background: var(--scheme-${props.blockColor})
+  `}
+`
 
 GridElement.propTypes = {
-  area: PropTypes.string,
+  area: PropTypes.string.isRequired,
   blockColor: PropTypes.string
 }
+
+export default GridElement

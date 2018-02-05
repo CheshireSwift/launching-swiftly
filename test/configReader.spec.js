@@ -9,10 +9,10 @@ describe('The config reader', () => {
 
   it('loads the modules into a dictionary', () => {
     const config = {
-      "modules": {
-        "web": {},
-        "terminal": {},
-        "launcher": {}
+      'modules': {
+        'web': {},
+        'terminal': {},
+        'launcher': {}
       }
     }
 
@@ -21,9 +21,9 @@ describe('The config reader', () => {
 
   it('converts layout arrays to CSS values', () => {
     const config = {
-      "layout": [
-        ["a", "b", "c"],
-        ["a", "d", "d"]
+      'layout': [
+        ['a', 'b', 'c'],
+        ['a', 'd', 'd']
       ]
     }
 
@@ -33,13 +33,13 @@ describe('The config reader', () => {
 
   it('warns if there are modules not used in the layout', () => {
     const config = {
-      "modules": {
-        "a": {},
-        "b": {},
-        "c": {}
+      'modules': {
+        'a': {},
+        'b': {},
+        'c': {}
       },
-      "layout": [
-        ["a"]
+      'layout': [
+        ['a']
       ]
     }
 
@@ -49,11 +49,11 @@ describe('The config reader', () => {
 
   it('warns if there are undefined modules in the layout', () => {
     const config = {
-      "modules": {
-        "a": {}
+      'modules': {
+        'a': {}
       },
-      "layout": [
-        ["a", "b", "c"]
+      'layout': [
+        ['a', 'b', 'c']
       ]
     }
     expect(readConfig(config).warnings, 'to contain', 'Module "b" is not defined.')

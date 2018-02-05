@@ -3,6 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import styled from 'styled-components'
 
 import GridElement from './grid-element'
 
@@ -14,22 +15,28 @@ const STYLE = {
   width: '100%'
 }
 
-export default class GridContainer extends React.Component {
-  render () {
-    let styles = _.merge({},
-      STYLE,
-      { gridTemplateAreas: this.props.templateAreas }
-    )
+const GridOuter = styled.div`
+  height: calc(100vh - 20px);
+  width: 100%;
+  display: grid;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  grid-template-areas: ${props => props.templateAreas};
+`
 
-    let blocks = _.map(this.props.modules, (moduleConfig, moduleName) =>
-      <GridElement key={moduleName} area={moduleName} blockColor={moduleConfig.color} />
-    )
-
-    return <div style={styles}>{blocks}</div>
-  }
-}
+const GridContainer = props => (
+  <GridOuter templateAreas={props.templateAreas}>
+    {
+      _.map(props.modules, (moduleConfig, moduleName) =>
+        <GridElement key={moduleName} area={moduleName} blockColor={moduleConfig.color} />
+      )
+    }
+  </GridOuter>
+)
 
 GridContainer.propTypes = {
   templateAreas: PropTypes.string.isRequired,
   modules: PropTypes.object.isRequired
 }
+
+export default GridContainer
