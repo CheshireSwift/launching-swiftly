@@ -1,13 +1,13 @@
-'use babel'
-
 import { ipcRenderer } from 'electron'
 import React from 'react'
 import _ from 'lodash'
 
 import GridContainer from './grid-container.jsx'
 
+export type Props = {};
+
 export default class Main extends React.Component {
-  constructor (props) {
+  constructor (props: Props) {
     super(props)
     this.state = {
       config: {

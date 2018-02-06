@@ -1,19 +1,8 @@
-'use babel'
-
 import React from 'react'
-import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styled from 'styled-components'
 
 import GridElement from './grid-element'
-
-const STYLE = {
-  display: 'grid',
-  gridColumnGap: 5,
-  gridRowGap: 5,
-  height: 'calc(100vh - 20px)',
-  width: '100%'
-}
 
 const GridOuter = styled.div`
   height: calc(100vh - 20px);
@@ -21,10 +10,15 @@ const GridOuter = styled.div`
   display: grid;
   grid-column-gap: 5px;
   grid-row-gap: 5px;
-  grid-template-areas: ${props => props.templateAreas};
+  grid-template-areas: ${(props: { templateAreas: string }) => props.templateAreas};
 `
 
-const GridContainer = props => (
+export type Props = {
+  templateAreas: string,
+  modules: Object,
+};
+
+const GridContainer = (props: Props) => (
   <GridOuter templateAreas={props.templateAreas}>
     {
       _.map(props.modules, (moduleConfig, moduleName) =>
@@ -33,10 +27,5 @@ const GridContainer = props => (
     }
   </GridOuter>
 )
-
-GridContainer.propTypes = {
-  templateAreas: PropTypes.string.isRequired,
-  modules: PropTypes.object.isRequired
-}
 
 export default GridContainer
