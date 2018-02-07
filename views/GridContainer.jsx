@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import styled from 'styled-components'
 
-import GridElement from './grid-element'
+import GridElement from './GridElement'
 
 const GridOuter = styled.div`
   height: calc(100vh - 20px);
