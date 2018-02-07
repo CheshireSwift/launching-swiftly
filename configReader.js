@@ -4,6 +4,7 @@ const _ = require('lodash')
 function readJSON(json) {
   read(JSON.parse(json))
 }
+
 function read(config) {
   const modules = config.modules
   const templateAreas = _(config.layout)
@@ -17,18 +18,12 @@ function read(config) {
   const undefinedModules = _.difference(_.flatten(config.layout), _.keys(config.modules))
   const undefinedModuleWarnings = _.map(undefinedModules, moduleName => `Module "${moduleName}" is not defined.`)
 
-  const warnings = _.flatten([
-    unusedModuleWarnings,
-    undefinedModuleWarnings
-  ])
+  const warnings = [...unusedModuleWarnings, ...undefinedModuleWarnings]
 
-  return {
-    modules,
-    templateAreas,
-    warnings
-  }
+  return { modules, templateAreas, warnings }
 }
 
 module.exports = {
-  read, readJSON
+  read,
+  readJSON
 }
