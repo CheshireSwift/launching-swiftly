@@ -14,6 +14,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^1.7.11",
+    "eslint": "^4.17.0",
+    "eslint-config-cheshireswift": "^2.0.0",
     "mocha": "^3.5.3",
     "standard": "^10.0.3",
     "unexpected": "^10.36.3"

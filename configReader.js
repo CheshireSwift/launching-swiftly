@@ -23,7 +23,4 @@ function read(config) {
   return { modules, templateAreas, warnings }
 }
 
-module.exports = {
-  read,
-  readJSON
-}
+module.exports = { read, readJSON }
